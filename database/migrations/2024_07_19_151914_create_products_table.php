@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name', 100);
             $table->decimal('price');
-            $table->longText('photo');
+            $table->string('photo');
             $table->boolean('active')->default(true);
         });
     }

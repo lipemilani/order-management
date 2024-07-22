@@ -57,4 +57,9 @@ class Product extends Model
         'photo',
         'active',
     ];
+
+    public function orders(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }

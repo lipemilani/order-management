@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface  EntityRepositoryContract
+interface EntityRepositoryContract
 {
     /**
      * Returns the class name of the object managed by the repository.

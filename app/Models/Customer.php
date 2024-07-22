@@ -74,4 +74,9 @@ class Customer extends Model
         'created_at',
         'active',
     ];
+
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

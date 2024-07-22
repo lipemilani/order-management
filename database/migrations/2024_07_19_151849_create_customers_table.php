@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('email', 100)->unique();
             $table->string('phone', 20);
-            $table->timestamps('date_of_birth');
+            $table->timestamp('date_of_birth');
             $table->string('address', 200);
             $table->string('complement', 60);
             $table->string('neighborhood', 60);
             $table->string('cep', 10);
-            $table->timestamps('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->boolean('active')->default(true);
         });
     }

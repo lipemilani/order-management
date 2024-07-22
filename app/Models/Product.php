@@ -26,6 +26,12 @@ class Product extends Model
      */
     protected $table = 'products';
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
+    public $timestamps = false;
+
     /**
      * The attributes that should be cast to native types.
      *

@@ -20,6 +20,14 @@ class CustomerController extends Controller
         parent::__construct($service);
     }
 
+    public function index()
+    {
+        $customer = Customer::paginate()->all();
+
+        return response()->json($customer);
+
+    }
+
     /**
      * @param CustomerRequest $request
      * @throws \ReflectionException
@@ -27,11 +35,12 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request): JsonResponse
     {
-        $dto = CustomerDTO::fromRequest($request);
-
-        $customer = $this->service->store($dto);
-
-        return response()->json($customer);
+        dd('foi!!');
+//        $dto = CustomerDTO::fromRequest($request);
+//
+//        $customer = $this->service->store($dto);
+//
+//        return response()->json($customer);
     }
 
     /**

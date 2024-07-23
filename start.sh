@@ -5,16 +5,17 @@ if [ ! -f ".env" ]
     cp .env.example .env
 fi
 
+chmod -R 777 storage
+
 if [ ! -f "storage/oauth-private.key" ]
   then
-    docker compose exec php php artisan passport:keys
-    docker compose exec php sh -c "printf '\n\n' | php artisan passport:client --password"
+    php artisan passport:keys
+    sh -c "printf '\n\n\n' | php artisan passport:client --password"
 fi
 
 echo "...FIX STORAGE AND VENDOR FOLDER PERMISSION..."
 
-docker compose exec php chmod -R 777 storage
-
 composer install
 
 php artisan serve --host=0.0.0.0 --port=8000
+

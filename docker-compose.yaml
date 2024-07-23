@@ -26,18 +26,11 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: mysql_password
 
-  localstack:
-    image: localstack/localstack:latest
-    container_name: travel_moon_localstack
-    environment:
-      - SERVICES=s3
-      - AWS_DEFAULT_REGION=us-east-1
-      - EDGE_PORT=4566
+  s3:
+    build:
+      context: docker/s3
     ports:
-      - '4566:4566'
-    volumes:
-      - "localstack:/var/lib/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "9444:9000"
 
 volumes:
   mysql-data:

@@ -32,16 +32,16 @@ Siga os passos abaixo para subir o projeto localmente:
 
 5. Suba os containers do Docker:
    bash
-   docker-compose up --build -d
+   docker compose up --build -d
 
 
 6. Execute as migrações do banco de dados:
    bash
-   docker-compose exec app php artisan migrate
+   docker compose exec app php artisan migrate
 
 7. Execute as seeders do banco de dados:
    bash
-   docker-compose exec app php artisan db:seed
+   docker compose exec app php artisan db:seed
 
 * Será criado um usuario teste para se autenticar: 
   Email: test@example.com Senha: password
@@ -82,3 +82,4 @@ Siga os passos abaixo para subir o projeto localmente:
 * Order:
 - Create - Post /api/orders
 - Delete - Del /api/orders
+* * * Na rota de create, é enviado um email contendo as informações do pedido. Foi utilizado o Mailtrap para a simulação desse envio.

@@ -28,7 +28,15 @@ class OrderService
      */
     public function store(string $customerId, string $productId): mixed
     {
-        return app(CreateTask::class)->execute(['customer_id' => $customerId, 'product_id' => $productId]);
+        $order = $this->repository->checkIfExistsByCustomerIdAndProductId($customerId, $productId);
+
+        if ($order) {
+            return true;
+        }
+
+        $this->repository->store(['customer_id' => $customerId, 'product_id' => $productId]);
+
+        return false;
     }
 
     /**

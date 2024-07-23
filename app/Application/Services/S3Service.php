@@ -8,11 +8,19 @@ use Ramsey\Uuid\Uuid;
 
 class S3Service
 {
+    /**
+     * @param string $name
+     * @return string|null
+     */
     public function get(string $name)
     {
         return Storage::disk('s3')->get($name);
     }
 
+    /**
+     * @param UploadedFile $content
+     * @return array|string|string[]
+     */
     public function put(UploadedFile $content)
     {
         $hashName = Uuid::uuid4()->toString() . '.' . $content->getClientOriginalExtension();
@@ -21,6 +29,4 @@ class S3Service
         $urlStorage = str_replace('s3:9000', 'localhost:9444', $urlStorage);
         return str_replace('/local/', '/ui/local/', $urlStorage);
     }
-
-
 }

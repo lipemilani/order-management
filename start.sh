@@ -11,6 +11,9 @@ if [ ! -f "storage/oauth-private.key" ]
     docker compose exec php sh -c "printf '\n\n' | php artisan passport:client --password"
 fi
 
+echo "...FIX STORAGE AND VENDOR FOLDER PERMISSION..."
+
+docker compose exec php chmod -R 777 storage
 
 composer install
 

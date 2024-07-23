@@ -1,66 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Order Management
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Projeto de Desafio Comerc
 
-## About Laravel
+## Tecnologias Utilizadas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- *PHP 8.3*: Linguagem de programação server-side utilizada no projeto.
+- *Laravel 11*: Framework PHP utilizado para o desenvolvimento da aplicação.
+- *MySQL*: Banco de dados relacional utilizado para armazenar os dados da aplicação.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Como Subir o Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Siga os passos abaixo para subir o projeto localmente:
 
-## Learning Laravel
+1. Clone o repositório do projeto:
+   bash
+   git clone https://github.com/lipemilani/order-management.git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Navegue até o diretório do projeto:
+   bash
+   cd order-management
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+3. Configure o arquivo .env com as suas variáveis de ambiente. Um exemplo de .env pode ser encontrado em .env.example.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+4. Execute este comando:
+   bash
+   sudo chmod +x start.sh
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+5. Suba os containers do Docker:
+   bash
+   docker-compose up --build -d
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+6. Execute as migrações do banco de dados:
+   bash
+   docker-compose exec app php artisan migrate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. Execute as seeders do banco de dados:
+   bash
+   docker-compose exec app php artisan db:seed
 
-## Security Vulnerabilities
+* Será criado um usuario teste para se autenticar: 
+  Email: test@example.com Senha: password
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* Será criado varios produtos na tabela products
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+9. Gerar token de autenticação:
+* POST: http://127.0.0.1:8000/oauth/token
+* BODY: {
+  "grant_type": "password",
+  "client_id": 1, // Pegar essa informação na tabela oauth_clients
+  "client_secret": "", Pegar essa informação na tabela oauth_clients
+  "username": "test@example.com",
+  "password": "password",
+  "scope": "*"
+  }
+* Com o token gerado, você poderá se autenticar em todas as todas da aplicação
+
+
+10. Rotas:
+* Customer:
+- Index - GET /api/customers
+- Create - POST /api/customers
+- Update - PUT /api/customers/uuid
+- Show - GET /api/customers/uuid
+- Delete - DEL /api/customers/uuid
+- Restore - PUT /api/customers/uuid/restore
+
+* Product:
+- Index - GET /api/products
+- Create - POST /api/products
+- Update - PUT /api/products/uuid
+- Show - GET /api/products/uuid
+- Delete - DEL /api/products/uuid
+- Restore - PUT /api/products/uuid/restore
+
+* Order:
+- Create - Post /api/orders
+- Delete - Del /api/orders

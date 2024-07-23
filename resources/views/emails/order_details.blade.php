@@ -37,7 +37,7 @@
     <p><strong>Produt:</strong> {{ $product->name }}</p>
     <p><strong>Preço:</strong> ${{ number_format($product->price, 2) }}</p>
     <p><strong>Order ID:</strong> {{ $order->id }}</p>
-    <p><strong>Order date:</strong> ${{ $order->created_at }}</p>
+    <p><strong>Order date:</strong> {{ $order->created_at }}</p>
 </div>
 </body>
 </html>

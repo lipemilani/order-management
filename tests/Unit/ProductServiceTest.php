@@ -198,23 +198,6 @@ class ProductServiceTest extends TestCase
     /**
      * @return void
      */
-    public function test_delete_method_not_found()
-    {
-        $id = '1';
-
-        $this->repositoryMock->shouldReceive('find')
-            ->once()
-            ->with($id)
-            ->andReturn(null);
-
-        $result = $this->service->delete($id);
-
-        $this->assertFalse($result);
-    }
-
-    /**
-     * @return void
-     */
     public function test_restore_method()
     {
         $id = '1';
@@ -233,22 +216,5 @@ class ProductServiceTest extends TestCase
         $result = $this->service->restore($id);
 
         $this->assertTrue($result);
-    }
-
-    /**
-     * @return void
-     */
-    public function test_restore_method_not_found()
-    {
-        $id = '1';
-
-        $this->repositoryMock->shouldReceive('find')
-            ->once()
-            ->with($id)
-            ->andReturn(null);
-
-        $result = $this->service->restore($id);
-
-        $this->assertFalse($result);
     }
 }

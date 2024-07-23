@@ -2,9 +2,12 @@
 
 namespace App\Application\Services;
 
+use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Product;
 use App\Repositories\OrderRepository;
 use App\Application\Tasks\Orders\CreateTask;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class OrderService
 {
@@ -55,4 +58,5 @@ class OrderService
         $this->repository->delete($order);
         return true;
     }
+
 }

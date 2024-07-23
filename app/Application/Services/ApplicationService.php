@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Application\DTO\DataTransferObject;
 use App\Application\Transformers\Transformer;
 use App\Repositories\EntityRepositoryContract;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ApplicationService
 {
@@ -64,7 +65,11 @@ class ApplicationService
      */
     public function find($id)
     {
-        return $this->repository->find($id);
+        $result = $this->repository->find($id);
+
+        if(blank($result)) throw new HttpException(404, 'Register not found');
+
+        return $result;
     }
 
     /**

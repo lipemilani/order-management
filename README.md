@@ -50,7 +50,7 @@ Siga os passos abaixo para subir o projeto localmente:
 * Será criado varios produtos na tabela products
 
 
-9. Gerar token de autenticação:
+8. Gerar token de autenticação:
 ```
 * POST: http://127.0.0.1:8000/oauth/token
 * BODY: {
@@ -64,8 +64,7 @@ Siga os passos abaixo para subir o projeto localmente:
 ```
 * Com o token gerado, você poderá se autenticar em todas as todas da aplicação
 
-
-10. Rotas:
+9. Rotas:
 * Customer:
 - Index - GET /api/customers
 - Create - POST /api/customers

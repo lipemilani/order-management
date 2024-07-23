@@ -18,6 +18,7 @@ class S3Service
         $hashName = Uuid::uuid4()->toString() . '.' . $content->getClientOriginalExtension();
         Storage::disk('s3')->put($hashName, $content->getContent());
         $urlStorage = Storage::disk('s3')->url($hashName);
+        $urlStorage = str_replace('s3:9000', 'localhost:9444', $urlStorage);
         return str_replace('/local/', '/ui/local/', $urlStorage);
     }
 

@@ -10,7 +10,7 @@ class ProductRequest extends BaseRequest
         return [
             'name' => 'string|required',
             'price' => 'numeric|required',
-            'photo' => 'string|required'
+            'photo' => 'max:2000|mimes:jpeg,png,doc,docs,pdf|required'
         ];
     }
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Application\Services\S3Service;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use App\Application\DTO\ProductDTO;
 use App\Http\Requests\ProductRequest;
 use App\Application\Services\ProductService;
+use Illuminate\Http\UploadedFile;
 
 class ProductController extends Controller
 {

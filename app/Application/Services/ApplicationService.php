@@ -12,12 +12,12 @@ class ApplicationService
     /**
      * @var Transformer|null
      */
-    private ?Transformer $transformer;
+    protected ?Transformer $transformer;
 
     /**
      * @var EntityRepositoryContract|null
      */
-    private ?EntityRepositoryContract $repository;
+    protected ?EntityRepositoryContract $repository;
 
     public function __construct(?Transformer $transformer = null, ?EntityRepositoryContract $repository = null)
     {

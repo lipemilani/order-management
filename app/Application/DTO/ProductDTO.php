@@ -2,6 +2,8 @@
 
 namespace App\Application\DTO;
 
+use Illuminate\Http\UploadedFile;
+
 class ProductDTO extends DataTransferObject
 {
     public ?string $id;
@@ -10,7 +12,7 @@ class ProductDTO extends DataTransferObject
 
     public ?float $price;
 
-    public ?string $photo;
+    public ?UploadedFile $photo;
 
     public ?bool $active;
 }

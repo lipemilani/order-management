@@ -31,6 +31,7 @@ class CustomerTransformer extends Transformer
         $model->created_at = $dto->createdAt;
         $model->active = $dto->active;
 
+        return $model;
     }
 
     /**

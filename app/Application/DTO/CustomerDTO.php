@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 class CustomerDTO extends DataTransferObject
 {
-    public ?int $id;
+    public ?string $id;
 
     public ?string $name;
 
@@ -14,7 +14,7 @@ class CustomerDTO extends DataTransferObject
 
     public ?string $phone;
 
-    public ?Carbon $dateOfBirth;
+    public ?string $dateOfBirth;
 
     public ?string $address;
 
@@ -27,6 +27,4 @@ class CustomerDTO extends DataTransferObject
     public ?Carbon $createdAt;
 
     public ?bool $active;
-
-
 }

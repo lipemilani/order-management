@@ -39,8 +39,5 @@
     <p><strong>Order ID:</strong> {{ $order->id }}</p>
     <p><strong>Order date:</strong> ${{ $order->created_at }}</p>
 </div>
-<div class="footer">
-    <p>Thank you!</p>
-</div>
 </body>
 </html>

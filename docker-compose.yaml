@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./:/var/www
+      - ./:/app
     depends_on:
       - db
 
@@ -26,5 +26,20 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: mysql_password
 
+  localstack:
+    image: localstack/localstack:latest
+    container_name: travel_moon_localstack
+    environment:
+      - SERVICES=s3
+      - AWS_DEFAULT_REGION=us-east-1
+      - EDGE_PORT=4566
+    ports:
+      - '4566:4566'
+    volumes:
+      - "localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
 volumes:
   mysql-data:
+  localstack:
+    driver: local

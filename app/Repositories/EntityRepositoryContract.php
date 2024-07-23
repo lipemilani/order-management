@@ -13,10 +13,9 @@ interface EntityRepositoryContract
     public function getEntityClassName(): string;
 
     /**
-     * @param array $data
      * @return mixed
      */
-    public function index(array $data);
+    public function index();
 
     /**
      * @param $id

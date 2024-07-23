@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use App\Application\Services\OrderService;
@@ -22,45 +23,36 @@ class OrderController
     }
 
     /**
-     * @param string $customerId
-     * @param string $productId
+     * @param OrderRequest $request
      * @return JsonResponse
      */
-    public function store(string $customerId, string $productId): JsonResponse
+    public function store(OrderRequest $request): JsonResponse
     {
-        request()->validate([
-            'customer_id' => 'string|required' . $customerId,
-            'product_id' => 'string|required' . $productId,
-        ]);
+        $customerId = $request->get('customer_id');
+        $productId = $request->get('product_id');
 
-        $order = Order::where('customer_id', $customerId)->where('product_id', $productId)->first();
+        $result = $this->service->store($customerId, $productId);
 
-        if (!empty($order)) return response()->json("This order already exists for this customer.", 400);
+        if($result) return response()->json("This order already exists for this customer.", 400);
 
-        $this->service->store($customerId, $productId);
-
-        return response()->json("Order created.", 201);
+        return response()->json("Orders created.", 201);
 
     }
 
     /**
-     * @param string $customerId
-     * @param string $productId
+     * @param OrderRequest $request
      * @return JsonResponse
      */
-    public function delete(string $customerId, string $productId): JsonResponse
+    public function delete(OrderRequest $request): JsonResponse
     {
-        request()->validate([
-            'customer_id' => 'string|required' . $customerId,
-            'product_id' => 'string|required' . $productId,
-        ]);
+        $customerId = $request->get('customer_id');
+        $productId = $request->get('product_id');
 
-        $order = Order::where('customer_id', $customerId)->where('product_id', $productId)->first();
 
-        if (empty($order)) return response()->json("There is no such order", 400);
+        $result = $this->service->delete($customerId, $productId);
 
-        $this->service->delete($order);
+        if (!$result) return response()->json("There is no such order", 400);
 
-        return response()->json("Order deleted.", 204);
+        return response()->json("Orders deleted.", 204);
     }
 }

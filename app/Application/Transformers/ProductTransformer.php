@@ -27,6 +27,7 @@ class ProductTransformer extends Transformer
         $model->photo = $dto->photo;
         $model->active = $dto->active;
 
+        return $model;
     }
 
     /**

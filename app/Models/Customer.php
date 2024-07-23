@@ -35,6 +35,8 @@ class Customer extends Model
 
     protected $keyType = 'string';
 
+    public $timestamps = false;
+
     public $incrementing = false;
 
     /**

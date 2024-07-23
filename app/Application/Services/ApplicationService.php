@@ -25,9 +25,9 @@ class ApplicationService
         $this->transformer = $transformer;
     }
 
-    public function index($data)
+    public function index()
     {
-        return $this->repository->index($data);
+        return $this->repository->index();
     }
 
     /**

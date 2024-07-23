@@ -13,20 +13,19 @@ class EntityRepository implements EntityRepositoryContract
         return $this->entityClassName;
     }
 
-    public function index(array $data)
+    public function index()
     {
-        // TODO: Implement index() method.
+        return $this->getEntityClassName()::paginate()->all();
     }
 
     public function find($id)
     {
-        return $this->getEntityClassName()->find($id);
+        return $this->getEntityClassName()::find($id);
     }
 
     public function store(Model $model)
     {
         $model->created_at = Carbon::now()->setTimezone('America/Sao_Paulo');
-        $model->updated_at = Carbon::now()->setTimezone('America/Sao_Paulo');
         $model->active = true;
 
         unset($model->id);
@@ -37,8 +36,6 @@ class EntityRepository implements EntityRepositoryContract
 
     public function update(Model $model)
     {
-        $model->updated_at = Carbon::now()->setTimezone('America/Sao_Paulo');
-
         $model->save();
 
         return $model;

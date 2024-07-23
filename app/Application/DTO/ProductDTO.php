@@ -4,7 +4,7 @@ namespace App\Application\DTO;
 
 class ProductDTO extends DataTransferObject
 {
-    public ?int $id;
+    public ?string $id;
 
     public ?string $name;
 
@@ -13,5 +13,4 @@ class ProductDTO extends DataTransferObject
     public ?string $photo;
 
     public ?bool $active;
-
 }

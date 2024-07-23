@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone', 20);
             $table->timestamp('date_of_birth');
             $table->string('address', 200);
-            $table->string('complement', 60);
+            $table->string('complement', 60)->nullable();
             $table->string('neighborhood', 60);
             $table->string('cep', 10);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

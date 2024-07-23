@@ -18,17 +18,12 @@ class CreateTask implements BaseTaskContract
         $this->repository = $repository;
     }
 
-    public function execute(array $data): void
+    public function execute(array $data): ?bool
     {
-        $order = $this->repository->store($data);
-        $this->sendEmail($data, $order);
+        $exists = $this->repository->checkIfExistsByCustomerIdAndProductId($data['customer_id'], $data['product_id']);
+        if ($exists) return true;
+        $this->repository->store($data);
+        return false;
     }
 
-    private function sendEmail(array $data, Order $order): void
-    {
-        $customer = Customer::find($data['customer_id']);
-        $product = Product::find($data['product_id']);
-
-        Mail::to($customer->email)->send(new CreateOrderMail($customer, $product, $order));
-    }
 }

@@ -24,19 +24,27 @@ class OrderService
     /**
      * @param string $customerId
      * @param string $productId
-     * @return void
+     * @return mixed
      */
-    public function store(string $customerId, string $productId): void
+    public function store(string $customerId, string $productId): mixed
     {
-        app(CreateTask::class)->execute(['customerId' => $customerId, 'productId' => $productId]);
+        return app(CreateTask::class)->execute(['customer_id' => $customerId, 'product_id' => $productId]);
     }
 
     /**
-     * @param Order $order
-     * @return void
+     * @param string $customerId
+     * @param string $productId
+     * @return mixed
      */
-    public function delete(Order $order): void
+    public function delete(string $customerId, string $productId): mixed
     {
+        $order = $this->repository->checkIfExistsByCustomerIdAndProductId($customerId, $productId);
+
+        if (!$order) {
+            return false;
+        }
+
         $this->repository->delete($order);
+        return true;
     }
 }

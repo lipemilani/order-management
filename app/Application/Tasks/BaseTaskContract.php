@@ -6,7 +6,7 @@ interface BaseTaskContract
 {
     /**
      * @param array $data
-     * @return void
+     * @return bool|null
      */
-    public function execute(array $data): void;
+    public function execute(array $data): null|bool;
 }

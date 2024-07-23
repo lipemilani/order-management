@@ -43,4 +43,17 @@ class OrderRepository
         $order->active = false;
         $order->save();
     }
+
+    /**
+     * @param string $customerId
+     * @param string $productId
+     * @return mixed
+     */
+    public function checkIfExistsByCustomerIdAndProductId(string $customerId, string $productId): mixed
+    {
+        return $this->model::where('customer_id', $customerId)
+            ->where('product_id', $productId)
+            ->where('active', true)
+            ->first();
+    }
 }

@@ -20,6 +20,17 @@ class ProductController extends Controller
     }
 
     /**
+     * @return JsonResponse
+     */
+    public function index()
+    {
+        $customer = $this->service->index();
+
+        return response()->json($customer);
+
+    }
+
+    /**
      * @param ProductRequest $request
      * @throws \ReflectionException
      * @return JsonResponse
@@ -34,10 +45,10 @@ class ProductController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show(string $id): JsonResponse
     {
         $product = $this->service->find($id);
         return response()->json($product);
@@ -45,11 +56,11 @@ class ProductController extends Controller
 
     /**
      * @param ProductRequest $request
-     * @param int $id
+     * @param string $id
      * @throws \ReflectionException
      * @return JsonResponse
      */
-    public function update(ProductRequest $request, int $id): JsonResponse
+    public function update(ProductRequest $request, string $id): JsonResponse
     {
         /**
          * @var Product $product
@@ -61,20 +72,20 @@ class ProductController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return JsonResponse
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(string $id): JsonResponse
     {
         $this->service->delete($id);
         return response()->json(null, 204);
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return JsonResponse
      */
-    public function restore(int $id): JsonResponse
+    public function restore(string $id): JsonResponse
     {
         $this->service->restore($id);
         return response()->json(null, 204);

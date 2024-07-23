@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Order
+ * Class Orders
  * @package App\Domain\Models
  *
  * @property string $id
@@ -28,6 +28,8 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $keyType = 'string';
+
+    public $timestamps = false;
 
     public $incrementing = false;
 
